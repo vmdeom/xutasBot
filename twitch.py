@@ -2,7 +2,7 @@ import requests
 import websockets
 import asyncio
 import formatter
-from chat import Command, readCommand
+from chat import runCommand
 
 
 class Twitch:
@@ -45,15 +45,13 @@ class Twitch:
 			await websocket.send(f'JOIN #exutas')
 			#await websocket.send(f'PRIVMSG #exutas :This is a sample message')
 			
-			command = Command()
-
 			while True:
 				response = await websocket.recv()
 				response_split = response.split('#')
 				message = response_split[len(response_split) - 1]
 				f_message = formatter.formatter(message)
-				print(f_message)
+				#print(f_message)
 				c_message = formatter.formatterCmd(message)
-				print(c_message)
-				cmm = readCommand(c_message)
-				await websocket.send(f'PRIVMSG #exutas :{cmm}')
+				if type(c_message) == dict:
+					cmm = runCommand(c_message)
+					await websocket.send(f'PRIVMSG #exutas :{cmm}')

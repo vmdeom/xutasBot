@@ -3,12 +3,12 @@ import twitch
 import asyncio
 import sys
 
-if len(sys.argv) != 1:
-	print('Usage: python main.py "ENV"')
+if len(sys.argv) < 1:
+	print('Usage: python main.py "HML" or "PRD"')
 
 ENV = sys.argv[0]
 
-file = 'config.cfg' if env = 'HML' else 'auth.cfg'
+file = 'config.cfg' if ENV == 'HML' else 'auth.cfg'
 
 config = configparser.ConfigParser()
 config.read(file)

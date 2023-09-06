@@ -32,19 +32,19 @@ def formatterCmd(msg):
 
 		if cmd[0] == '!':
 			response = {
-				'user': usr,
-				'method': 'read',
-				'command': cmd,
-				'message': 'reading command',
-				'enabled': True
+				"user": usr,
+				"method": "read",
+				"command": cmd,
+				"message": "reading command",
+				"enabled": True
 				}
 			if cmd == '!register':
 				response = {
-					'user': usr,
-					'method': 'write',
-					'command': exe.split(' ', 1)[0],
-					'message': exe.split(' ', 1)[1],
-					'enabled': True
+					"user": usr,
+					"method": "write",
+					"command": exe.split(' ', 1)[0],
+					"message": exe.split(' ', 1)[1],
+					"enabled": True
 					}
 		else:
 			response = False
